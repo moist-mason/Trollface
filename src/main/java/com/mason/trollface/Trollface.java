@@ -1,5 +1,6 @@
 package com.mason.trollface;
 
+import com.mason.trollface.block.TrollBlocks;
 import com.mason.trollface.item.TrollItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.level.block.Block;
@@ -29,6 +30,7 @@ public class Trollface {
     public Trollface() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         TrollItems.register(eventBus);
+        TrollBlocks.register(eventBus);
         eventBus.addListener(this::setup);
 
         // Register ourselves for server and other game events we are interested in
