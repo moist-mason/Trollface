@@ -1,5 +1,8 @@
 {
   "item.trollface.trollface": "Trollface",
+  "item.trollface.trollface_entity_spawn_egg": "Spawn Trollface",
 
-  "block.trollface.trollface_block": "Block of Trollface"
+  "block.trollface.trollface_block": "Block of Trollface",
+
+  "itemGroup.trollfacetab": "Trollface"
 }

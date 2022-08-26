@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "trollface:trollface_block"
+    }
+  ],
+  "result": {
+    "item": "trollface:trollface",
+    "count": 9
+  }
+}
