@@ -20,6 +20,6 @@ public class EntityTrollfaceModel extends AnimatedGeoModel<EntityTrollface> {
     @Override
     public ResourceLocation getAnimationFileLocation(EntityTrollface animatable)
     {
-        return new ResourceLocation(Trollface.MOD_ID, "animation/trollface.animation.json");
+        return new ResourceLocation(Trollface.MOD_ID, "animations/trollface.animation.json");
     }
 }

@@ -21,7 +21,7 @@ public class EntityTrollfaceRenderer extends GeoEntityRenderer<EntityTrollface> 
     @Override
     public ResourceLocation getTextureLocation(EntityTrollface instance)
     {
-        return new ResourceLocation(Trollface.MOD_ID, "textures/entity/trollface_entity");
+        return new ResourceLocation(Trollface.MOD_ID, "textures/entity/trollface_entity.png");
     }
 
     public RenderType getRenderType(EntityTrollface animatable, float partialTicks, PoseStack stack,
