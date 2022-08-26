@@ -6,10 +6,14 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -45,19 +49,30 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
                 .add(Attributes.MAX_HEALTH, 20.00)
                 .add(Attributes.ATTACK_DAMAGE, 5.0f)
                 .add(Attributes.ATTACK_SPEED, 2.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.6f).build();
+                .add(Attributes.MOVEMENT_SPEED, 0.3f).build();
+    }
+
+    @Override
+    protected void defineSynchedData()
+    {
+        super.defineSynchedData();
+        this.entityData.define(ANGER_TIME, 0);
     }
 
     // Trollface is a neutral mob. It generally likes to move around in random directions, but when it gets hit by another mob,
     // it will target that mob and leap at it. -Mason
     protected void registerGoals()
     {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
-        this.goalSelector.addGoal(2, new LeapAtTargetGoal(this, 2.0F));
-        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 1.0D, 16.0F));
+        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 0.5D));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 2.0F));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
-
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false, this::isAngryAt));
+        this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false));
     }
 
     @Override
@@ -86,13 +101,6 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     @Override
     public void startPersistentAngerTimer() {
         this.setRemainingPersistentAngerTime(ANGRY_TIMER.sample(this.random));
-    }
-
-    @Override
-    protected void defineSynchedData()
-    {
-        super.defineSynchedData();
-        this.entityData.define(ANGER_TIME, 0);
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
