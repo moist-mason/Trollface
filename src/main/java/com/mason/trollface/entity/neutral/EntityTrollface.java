@@ -1,8 +1,13 @@
 package com.mason.trollface.entity.neutral;
 
+import com.mason.trollface.sound.TrollSounds;
+import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
@@ -29,7 +34,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import java.util.UUID;
 
 // Trollface has no animations, but it uses an animated geo model.
-// Any called classes or methods related to animation are required, but are either left blank or have null return values.
+// Any called classes or methods related to animation are required, but are either left blank or call an animation that doesn't do anything (animation.trollface.nil).
 // I will attempt to change this in the future. -Mason
 public class EntityTrollface extends Monster implements NeutralMob, IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
@@ -122,5 +127,17 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
+    }
+
+    protected SoundEvent getAmbientSound() {
+        return TrollSounds.TROLLFACE_ENTITY_IDLE.get();
+    }
+
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return TrollSounds.TROLLFACE_ENTITY_HURT.get();
+    }
+
+    protected SoundEvent getDeathSound() {
+        return TrollSounds.TROLLFACE_ENTITY_DEATH.get();
     }
 }

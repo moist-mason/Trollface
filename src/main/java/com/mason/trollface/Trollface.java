@@ -4,6 +4,7 @@ import com.mason.trollface.block.TrollBlocks;
 import com.mason.trollface.entity.EntityTypes;
 import com.mason.trollface.entity.client.render.EntityTrollfaceRenderer;
 import com.mason.trollface.item.TrollItems;
+import com.mason.trollface.sound.TrollSounds;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Block;
@@ -37,6 +38,8 @@ public class Trollface {
 
         TrollItems.register(eventBus);
         TrollBlocks.register(eventBus);
+
+        TrollSounds.register(eventBus);
 
         EntityTypes.register(eventBus);
 

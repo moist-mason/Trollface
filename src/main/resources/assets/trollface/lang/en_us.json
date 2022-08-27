@@ -4,5 +4,11 @@
 
   "block.trollface.trollface_block": "Block of Trollface",
 
-  "itemGroup.trollfacetab": "Trollface"
+  "entity.trollface.trollface_entity": "Trollface",
+
+  "itemGroup.trollfacetab": "Trollface",
+
+  "sounds.trollface.trollface_entity_idle": "Trollface chuckles",
+  "sounds.trollface.trollface_entity_hurt": "Trollface aches",
+  "sounds.trollface.trollface_entity_death": "Trollface dies"
 }

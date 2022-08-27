@@ -1,0 +1,25 @@
+{
+  "trollface_entity_idle": {
+    "subtitle": "trollface.trollface_entity_idle",
+    "sounds": [
+      "trollface:trollface_entity_idle_1",
+      "trollface:trollface_entity_idle_2",
+      "trollface:trollface_entity_idle_3"
+    ]
+  },
+
+  "trollface_entity_hurt": {
+    "subtitle": "trollface.trollface_entity_hurt",
+    "sounds": [
+      "trollface:trollface_entity_hurt_1",
+      "trollface:trollface_entity_hurt_2"
+    ]
+  },
+
+  "trollface_entity_death": {
+    "subtitle": "trollface.trollface_entity_death",
+    "sounds": [
+      "trollface:trollface_entity_death"
+    ]
+  }
+}
