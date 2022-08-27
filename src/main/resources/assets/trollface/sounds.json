@@ -3,8 +3,7 @@
     "subtitle": "trollface.trollface_entity_idle",
     "sounds": [
       "trollface:trollface_entity_idle_1",
-      "trollface:trollface_entity_idle_2",
-      "trollface:trollface_entity_idle_3"
+      "trollface:trollface_entity_idle_2"
     ]
   },
 
