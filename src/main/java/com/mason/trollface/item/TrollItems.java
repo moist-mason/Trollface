@@ -1,7 +1,7 @@
 package com.mason.trollface.item;
 
 import com.mason.trollface.Trollface;
-import com.mason.trollface.entity.EntityTypes;
+import com.mason.trollface.entity.TrollEntityTypes;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,7 +16,7 @@ public class TrollItems {
             () -> new Item(new Item.Properties().tab(TrollCreativeTab.TAB_TROLLFACE)));
 
     public static final RegistryObject<Item> TROLLFACE_ENTITY_SPAWN_EGG = ITEMS.register("trollface_entity_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntityTypes.TROLLFACE_ENTITY, 0x000000, 0xffffff,
+            () -> new ForgeSpawnEggItem(TrollEntityTypes.TROLLFACE_ENTITY, 0x000000, 0xffffff,
                     new Item.Properties().tab(TrollCreativeTab.TAB_TROLLFACE)));
     public static void register(IEventBus eventBus)
     {

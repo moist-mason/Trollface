@@ -10,7 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class EntityTypes {
+public class TrollEntityTypes {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.ENTITIES, Trollface.MOD_ID);
 
@@ -19,8 +19,7 @@ public class EntityTypes {
                     .sized(1.5f, 1.2f)
                     .build(new ResourceLocation(Trollface.MOD_ID, "trollface_entity").toString()));
 
-    public static void register(IEventBus eventBus)
-    {
+    public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }
 }
