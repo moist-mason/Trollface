@@ -1,3 +1,6 @@
+LOGO
+Trollge meme
+
 SOUND
 trollface_entity_death - Replix on freesound.org
 trollface_entity_hurt_1 - Reitanna Seishin on freesound.org
