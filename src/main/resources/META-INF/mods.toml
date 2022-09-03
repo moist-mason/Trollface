@@ -34,8 +34,8 @@ credits="Credits can be found with the ZIP file" #optional
 authors="moist-mason" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Silliest mod in all of Minecraft.
-Allows you to interact with real trollfaces in the wild.
+Introducing the silliest mod in all of Minecraft.
+The Trollface Mod allows you to interact with real trollfaces in the Minecraft wilderness, among other fantastic features.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.trollface]] #optional
