@@ -9,10 +9,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(modid = Trollface.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class TrollEventClientBusEvents
-{
-    public static void clientSetup(final FMLClientSetupEvent event)
-    {
+public class TrollEventClientBusEvents {
+    public static void clientSetup(final FMLClientSetupEvent event) {
         EntityRenderers.register(TrollEntityTypes.TROLLFACE_ENTITY.get(), EntityTrollfaceRenderer::new);
     }
 }

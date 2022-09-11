@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "T",
+    "N"
+  ],
+  "key": {
+    "T": {
+      "item": "trollface:trollface_block"
+    },
+    "N": {
+      "item": "minecraft:netherite_block"
+    }
+  },
+  "result": {
+    "item": "trollface:totem_of_trolling"
+  }
+}
