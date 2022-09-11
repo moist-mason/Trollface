@@ -12,6 +12,7 @@ Trollface Concept and Original Design: Originally by Carlos "Whynne" Ramirez; ©
 Trollface item texture: Original creator unknown; texture taken from http://pixelartmaker.com/art/e37846b03482c51. Posted ~2017
 Trollface block texture: Original creator unknown; texture based on the texture of Popbob, the infamous griefer/hacker of 2b2t, the oldest anarchy server in Minecraft.
 Trollface entity texture: Original creator unknown;  texture taken from https://www.pixilart.com/draw/troll-face-base-724c60286230f0c
+Totem of Trolling texture: Created with Popbob skin using https://r2beeaton.com/t/ (really cool site)
 
 
 
