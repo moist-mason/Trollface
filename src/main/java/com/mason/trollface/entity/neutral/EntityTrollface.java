@@ -53,11 +53,7 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
 
     // health, speed, and attack damage attributes.
     public static AttributeSupplier setAttributes() {
-        return Monster.createMonsterAttributes()
-                .add(Attributes.MAX_HEALTH, 20.00)
-                .add(Attributes.ATTACK_DAMAGE, 5.0f)
-                .add(Attributes.ATTACK_SPEED, 2.0f)
-                .add(Attributes.MOVEMENT_SPEED, 0.3f).build();
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20.00).add(Attributes.ATTACK_DAMAGE, 5.0f).add(Attributes.ATTACK_SPEED, 2.0f).add(Attributes.MOVEMENT_SPEED, 0.3f).build();
     }
 
     @Override
