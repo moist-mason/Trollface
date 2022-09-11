@@ -139,8 +139,7 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     // Useless animation method.
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller",
-                0, this::predicate));
+        data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
     }
 
     // Useless animation method.
