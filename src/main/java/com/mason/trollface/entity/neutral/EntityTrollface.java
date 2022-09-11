@@ -7,14 +7,11 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.TimeUtil;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.NeutralMob;
+import net.minecraft.util.TimeUtil;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -23,10 +20,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.BlockAndTintGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -94,7 +88,7 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
         return pLevel.getRawBrightness(pPos, 0) > 8;
     }
 
-    // Override of a method found in the vanilla Monster class. This override allows for the Trollface mob to spawn even in daylight.
+    // Override of a method found in the vanilla Monster class. This override allows for the Trollface mob to spawn in daylight.
     public float getWalkTargetValue(BlockPos pBlockPos, LevelReader pLevel) {
         return 0.0F;
     }
@@ -145,7 +139,8 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     // Useless animation method.
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
+        data.addAnimationController(new AnimationController(this, "controller",
+                0, this::predicate));
     }
 
     // Useless animation method.
@@ -167,7 +162,7 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
         return TrollSounds.TROLLFACE_ENTITY_DEATH.get();
     }
 
-    // Override of a method in the Monster class.
+    // Override of a method in the Monster class. This makes it so the player can use a bed if the Trollface mob is not angry.
     public boolean isPreventingPlayerRest(Player pPlayer) {
         return this.isAngryAt(pPlayer);
     }
