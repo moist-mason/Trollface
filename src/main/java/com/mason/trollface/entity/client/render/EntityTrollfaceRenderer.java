@@ -22,11 +22,8 @@ public class EntityTrollfaceRenderer extends GeoEntityRenderer<EntityTrollface> 
         return new ResourceLocation(Trollface.MOD_ID, "textures/entity/trollface_entity.png");
     }
 
-    public RenderType getRenderType(EntityTrollface animatable, float partialTicks, PoseStack stack,
-                                    MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
-                                    ResourceLocation textureLocation) {
+    public RenderType getRenderType(EntityTrollface animatable, float partialTicks, PoseStack stack, MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
         stack.scale(1F, 1F, 1F);
         return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
     }
-
 }
