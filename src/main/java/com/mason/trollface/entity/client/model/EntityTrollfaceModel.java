@@ -18,7 +18,8 @@ public class EntityTrollfaceModel extends AnimatedGeoModel<EntityTrollface> {
 
     // Trollface doesn't have animations, but this method must be implemented.
     @Override
-    public ResourceLocation getAnimationFileLocation(EntityTrollface animatable) {
+    public ResourceLocation getAnimationFileLocation(EntityTrollface animatable)
+    {
         return new ResourceLocation(Trollface.MOD_ID, "animations/trollface.animation.json");
     }
 }

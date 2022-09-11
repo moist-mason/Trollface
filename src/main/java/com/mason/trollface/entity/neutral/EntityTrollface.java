@@ -52,7 +52,8 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     }
 
     // health, speed, and attack damage attributes.
-    public static AttributeSupplier setAttributes() {
+    public static AttributeSupplier setAttributes()
+    {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 20.00)
                 .add(Attributes.ATTACK_DAMAGE, 5.0f)
@@ -61,7 +62,8 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     }
 
     @Override
-    protected void defineSynchedData() {
+    protected void defineSynchedData()
+    {
         super.defineSynchedData();
         this.entityData.define(ANGER_TIME, 0);
     }
@@ -92,7 +94,7 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
         return pLevel.getRawBrightness(pPos, 0) > 8;
     }
 
-    // Override of a method found in the vanilla Monster class. This override allows for the Trollface mob to spawn in daylight.
+    // Override of a method found in the vanilla Monster class. This override allows for the Trollface mob to spawn even in daylight.
     public float getWalkTargetValue(BlockPos pBlockPos, LevelReader pLevel) {
         return 0.0F;
     }
@@ -104,12 +106,14 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
 
     // Methods related to the Trollface's neutral mob anger.
     @Override
-    public int getRemainingPersistentAngerTime() {
+    public int getRemainingPersistentAngerTime()
+    {
         return this.entityData.get(ANGER_TIME);
     }
 
     @Override
-    public void setRemainingPersistentAngerTime(int angerTime) {
+    public void setRemainingPersistentAngerTime(int angerTime)
+    {
         this.entityData.set(ANGER_TIME, angerTime);
     }
 
@@ -166,7 +170,7 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
         return TrollSounds.TROLLFACE_ENTITY_DEATH.get();
     }
 
-    // Override of a method in the Monster class. This makes it so the player can use a bed if the Trollface mob is not angry.
+    // Override of a method in the Monster class.
     public boolean isPreventingPlayerRest(Player pPlayer) {
         return this.isAngryAt(pPlayer);
     }

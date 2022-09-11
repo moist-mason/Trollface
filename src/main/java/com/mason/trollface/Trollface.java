@@ -5,7 +5,6 @@ import com.mason.trollface.entity.TrollEntityTypes;
 import com.mason.trollface.entity.client.render.EntityTrollfaceRenderer;
 import com.mason.trollface.entity.neutral.EntityTrollface;
 import com.mason.trollface.item.TrollItems;
-import com.mason.trollface.item.totem.TotemofTrolling;
 import com.mason.trollface.sound.TrollSounds;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.entity.EntityRenderers;
