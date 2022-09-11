@@ -26,5 +26,4 @@ public class EntityTrollfaceRenderer extends GeoEntityRenderer<EntityTrollface> 
         stack.scale(1F, 1F, 1F);
         return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
     }
-
 }
