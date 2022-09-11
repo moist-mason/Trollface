@@ -18,18 +18,15 @@ public class TrollEntityGeneration {
     }
 
     @SafeVarargs
-    private static void addEntityToSpecificBiomes(BiomeLoadingEvent event, EntityType<?> type,
-                                                  int weight, int minCount, int maxCount, ResourceKey<Biome>... biomes) {
-        boolean isBiomeSelected = Arrays.stream(biomes).map(ResourceKey::location)
-                .map(Object::toString).anyMatch(s -> s.equals(event.getName().toString()));
+    private static void addEntityToSpecificBiomes(BiomeLoadingEvent event, EntityType<?> type, int weight, int minCount, int maxCount, ResourceKey<Biome>... biomes) {
+        boolean isBiomeSelected = Arrays.stream(biomes).map(ResourceKey::location).map(Object::toString).anyMatch(s -> s.equals(event.getName().toString()));
 
         if (isBiomeSelected) {
             addEntityToAllBiomes(event, type, weight, minCount, maxCount);
         }
     }
 
-    private static void addEntityToAllBiomes(BiomeLoadingEvent event, EntityType<?> type,
-                                             int weight, int minCount, int maxCount) {
+    private static void addEntityToAllBiomes(BiomeLoadingEvent event, EntityType<?> type, int weight, int minCount, int maxCount) {
         List<MobSpawnSettings.SpawnerData> base = event.getSpawns().getSpawner(type.getCategory());
         base.add(new MobSpawnSettings.SpawnerData(type, weight, minCount, maxCount));
     }

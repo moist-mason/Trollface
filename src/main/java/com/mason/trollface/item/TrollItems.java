@@ -3,14 +3,12 @@ package com.mason.trollface.item;
 import com.mason.trollface.Trollface;
 import com.mason.trollface.entity.TrollEntityTypes;
 import com.mason.trollface.item.totem.TotemofTrolling;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.util.function.Function;
 
 public class TrollItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Trollface.MOD_ID);

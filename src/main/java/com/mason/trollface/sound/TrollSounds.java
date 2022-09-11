@@ -8,8 +8,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.rmi.registry.Registry;
-
 public class TrollSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Trollface.MOD_ID);
 
@@ -21,6 +19,7 @@ public class TrollSounds {
     private static RegistryObject<SoundEvent> regSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(Trollface.MOD_ID, name)));
     }
+
     public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);
     }
