@@ -11,13 +11,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class TrollEntityTypes {
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
-            DeferredRegister.create(ForgeRegistries.ENTITIES, Trollface.MOD_ID);
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, Trollface.MOD_ID);
 
-    public static final RegistryObject<EntityType<EntityTrollface>> TROLLFACE_ENTITY =
-            ENTITY_TYPES.register("trollface_entity", () -> EntityType.Builder.of(EntityTrollface::new, MobCategory.CREATURE)
-                    .sized(1.5f, 1.2f)
-                    .build(new ResourceLocation(Trollface.MOD_ID, "trollface_entity").toString()));
+    public static final RegistryObject<EntityType<EntityTrollface>> TROLLFACE_ENTITY = ENTITY_TYPES.register("trollface_entity", () -> EntityType.Builder.of(EntityTrollface::new, MobCategory.CREATURE).sized(1.5f, 1.2f).build(new ResourceLocation(Trollface.MOD_ID, "trollface_entity").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

@@ -8,8 +8,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.rmi.registry.Registry;
-
 public class TrollSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Trollface.MOD_ID);
 
@@ -19,13 +17,11 @@ public class TrollSounds {
     public static final RegistryObject<SoundEvent> TROLLFACE_ENTITY_DEATH = regSoundEvent("trollface_entity_death");
 
 
-
-    private static RegistryObject<SoundEvent> regSoundEvent(String name)
-    {
+    private static RegistryObject<SoundEvent> regSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(Trollface.MOD_ID, name)));
     }
-    public static void register(IEventBus eventBus)
-    {
+
+    public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);
     }
 }

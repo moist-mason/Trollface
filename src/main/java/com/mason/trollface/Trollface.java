@@ -51,10 +51,7 @@ public class Trollface {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            SpawnPlacements.register(TrollEntityTypes.TROLLFACE_ENTITY.get(),
-                    SpawnPlacements.Type.ON_GROUND,
-                    Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                    EntityTrollface::checkTrollfaceEntitySpawnRules);
+            SpawnPlacements.register(TrollEntityTypes.TROLLFACE_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EntityTrollface::checkTrollfaceEntitySpawnRules);
         });
     }
 }
