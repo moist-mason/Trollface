@@ -13,5 +13,4 @@ public class TrollWorldEvents {
     public static void biomeLoadingEvent(final BiomeLoadingEvent event) {
         TrollEntityGeneration.onEntitySpawn(event);
     }
-
 }
