@@ -1,14 +1,21 @@
 package com.mason.trollface.item.totem;
 
 import com.mason.trollface.item.TrollItems;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 @EventBusSubscriber
 public class TotemofTrolling extends Item {
@@ -40,5 +47,10 @@ public class TotemofTrolling extends Item {
 
             return stack != null;
         }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        pTooltipComponents.add(new TranslatableComponent("tooltip.trollface.totem_of_trolling"));
     }
 }

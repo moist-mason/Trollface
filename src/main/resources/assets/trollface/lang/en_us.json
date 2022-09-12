@@ -11,5 +11,7 @@
 
   "sounds.trollface.trollface_entity_idle": "Trollface chuckles",
   "sounds.trollface.trollface_entity_hurt": "Trollface aches",
-  "sounds.trollface.trollface_entity_death": "Trollface dies"
+  "sounds.trollface.trollface_entity_death": "Trollface dies",
+
+  "tooltip.trollface.totem_of_trolling": "§7It activates upon death, just like a regular totem, but its effects are unknown. \nGo ahead, try it!§r"
 }
