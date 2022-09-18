@@ -1,4 +1,4 @@
-package com.mason.trollface.item.totem;
+package com.mason.trollface.item.custom;
 
 import com.mason.trollface.item.TrollItems;
 import net.minecraft.network.chat.Component;
