@@ -62,8 +62,8 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
         this.entityData.define(ANGER_TIME, 0);
     }
 
-    // Trollface is a neutral mob. It generally likes to move around in random directions, but when it gets hit by another mob,
-    // it will target that mob and attack it.
+    /* Trollface is a neutral mob. It generally likes to move around in random directions, but when it gets hit by another mob,
+     * it will target that mob and attack it. */
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));

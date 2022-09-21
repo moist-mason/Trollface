@@ -45,12 +45,12 @@ public class Trollface {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void clientSetup(final FMLClientSetupEvent event) {
+    private void clientSetup(final FMLClientSetupEvent pEvent) {
         EntityRenderers.register(TrollEntityTypes.TROLLFACE_ENTITY.get(), EntityTrollfaceRenderer::new);
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
+    private void setup(final FMLCommonSetupEvent pEvent) {
+        pEvent.enqueueWork(() -> {
             SpawnPlacements.register(TrollEntityTypes.TROLLFACE_ENTITY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EntityTrollface::checkTrollfaceEntitySpawnRules);
         });
     }

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 public class TrollWorldEvents {
     // Biome loading event used for naturally spawning all mobs.
     @SubscribeEvent
-    public static void biomeLoadingEvent(final BiomeLoadingEvent event) {
-        TrollEntityGeneration.onEntitySpawn(event);
+    public static void biomeLoadingEvent(final BiomeLoadingEvent pEvent) {
+        TrollEntityGeneration.onEntitySpawn(pEvent);
     }
 }
