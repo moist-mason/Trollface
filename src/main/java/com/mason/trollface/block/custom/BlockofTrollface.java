@@ -18,41 +18,34 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class BlockofTrollface extends Block {
+
     public BlockofTrollface(Properties pProperties) {
         super(pProperties);
     }
 
     @Override
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-        if(!pLevel.isClientSide()) {
-            if(pEntity instanceof LivingEntity) {
-                LivingEntity entity = ((LivingEntity) pEntity);
+        if (!pLevel.isClientSide()) {
+            if (pEntity instanceof Player player) {
+                ItemStack stack = player.getItemBySlot(EquipmentSlot.HEAD);
+                if (stack.is(TrollItems.TROLLPODS.get())) {
+                    blockEffects(player, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 10, 5, -5);
+                }
+                blockEffects(player, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 20, 10, -10);
+                pLevel.playSound(player, pPos, TrollSounds.TROLLFACE_ENTITY_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+            } else if (pEntity instanceof Monster monster) {
+                ItemStack stack = monster.getItemBySlot(EquipmentSlot.HEAD);
+                if (stack.is(TrollItems.TROLLPODS.get())) {
+                    blockEffects(monster, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 10, 5, -5);
+                }
+                blockEffects(monster, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 20, 10, -10);
 
-                if(entity instanceof Player) {
-                    Player player = ((Player) entity);
-                    ItemStack stack = player.getItemBySlot(EquipmentSlot.HEAD);
-                    if(stack.is(TrollItems.TROLLPODS.get())) {
-                        blockEffects(player, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 10, 5, -5);
-                    } else {
-                        blockEffects(player, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 20, 10, -10);
-                        pLevel.playSound(player, pPos, TrollSounds.TROLLFACE_ENTITY_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
-                    }
-                } else if(entity instanceof Monster) {
-                    Monster monster = ((Monster) entity);
-                    ItemStack stack = monster.getItemBySlot(EquipmentSlot.HEAD);
-                    if(stack.is(TrollItems.TROLLPODS.get())) {
-                        blockEffects(monster, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 10, 5, -5);
-                    } else {
-                        blockEffects(monster, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 10, 5, -5);
-
-                        /* Allows the player to wear trollpods and mute the block of trollface giggles, even if they
-                         * aren't the ones stepping on the block. */
-                        Player player = ((Player) entity);
-                        ItemStack stack1 = player.getItemBySlot(EquipmentSlot.HEAD);
-                        if(!stack1.is(TrollItems.TROLLPODS.get())) {
-                            pLevel.playSound(player, pPos, TrollSounds.TROLLFACE_ENTITY_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
-                        }
-                    }
+                /* Allows the player to wear trollpods and mute the block of trollface giggles, even if they
+                 * aren't the ones stepping on the block. */
+                Player player = ((Player) pEntity);
+                ItemStack stack1 = player.getItemBySlot(EquipmentSlot.HEAD);
+                if (!stack1.is(TrollItems.TROLLPODS.get())) {
+                    pLevel.playSound(player, pPos, TrollSounds.TROLLFACE_ENTITY_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
             }
         }
