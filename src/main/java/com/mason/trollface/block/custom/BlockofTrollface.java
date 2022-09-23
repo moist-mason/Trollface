@@ -16,7 +16,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
+@EventBusSubscriber
 public class BlockofTrollface extends Block {
 
     public BlockofTrollface(Properties pProperties) {
@@ -55,4 +59,21 @@ public class BlockofTrollface extends Block {
         pEntity.addEffect(new MobEffectInstance(pEffect1, pDuration, pAmplifier1));
         pEntity.addEffect(new MobEffectInstance(pEffect2, pDuration, pAmplifier2));
     }
+
+    // The trollface death sound plays when the block is broken by a player. This can be negated by wearing trollpods.
+    @SubscribeEvent
+    public void destroyBlock(BreakEvent pEvent) {
+        Player player = pEvent.getPlayer();
+        BlockPos blockPos = pEvent.getPos();
+        Level level = player.getLevel();
+        ItemStack stack = player.getItemBySlot(EquipmentSlot.HEAD);
+        if(!stack.is(TrollItems.TROLLPODS.get())) {
+            level.playSound(player, blockPos, TrollSounds.TROLLFACE_ENTITY_DEATH.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+        }
+
+    }
+
+
+
+
 }
