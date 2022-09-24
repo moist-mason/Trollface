@@ -33,23 +33,26 @@ public class BlockofTrollface extends Block {
             if (pEntity instanceof Player player) {
                 ItemStack stack = player.getItemBySlot(EquipmentSlot.HEAD);
                 if (stack.is(TrollItems.TROLLPODS.get())) {
-                    blockEffects(player, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 10, 5, -5);
+                    blockEffects(player, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 200, 1, -1);
+                } else {
+                    blockEffects(player, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 400, 3, -2);
+                    pLevel.playSound(null, pPos, TrollSounds.TROLLFACE_ENTITY_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
-                blockEffects(player, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 20, 10, -10);
-                pLevel.playSound(player, pPos, TrollSounds.TROLLFACE_ENTITY_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             } else if (pEntity instanceof Monster monster) {
                 ItemStack stack = monster.getItemBySlot(EquipmentSlot.HEAD);
                 if (stack.is(TrollItems.TROLLPODS.get())) {
-                    blockEffects(monster, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 10, 5, -5);
-                }
-                blockEffects(monster, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 20, 10, -10);
+                    blockEffects(monster, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 200, 1, -1);
+                } else {
+                    blockEffects(monster, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 400, 3, -2);
 
-                /* Allows the player to wear trollpods and mute the block of trollface giggles, even if they
-                 * aren't the ones stepping on the block. */
-                Player player = ((Player) pEntity);
-                ItemStack stack1 = player.getItemBySlot(EquipmentSlot.HEAD);
-                if (!stack1.is(TrollItems.TROLLPODS.get())) {
-                    pLevel.playSound(player, pPos, TrollSounds.TROLLFACE_ENTITY_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                    /* Allows the player to wear trollpods and mute the block of trollface giggles, even if they
+                     * aren't the ones stepping on the block. */
+                    Player player = pLevel.getNearestPlayer(monster, 32);
+                    assert player != null;
+                    ItemStack stack1 = player.getItemBySlot(EquipmentSlot.HEAD);
+                    if (!stack1.is(TrollItems.TROLLPODS.get())) {
+                        pLevel.playSound(null, pPos, TrollSounds.TROLLFACE_ENTITY_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                    }
                 }
             }
         }
@@ -66,14 +69,10 @@ public class BlockofTrollface extends Block {
         Player player = pEvent.getPlayer();
         BlockPos blockPos = pEvent.getPos();
         Level level = player.getLevel();
+        BlockState state = pEvent.getState();
         ItemStack stack = player.getItemBySlot(EquipmentSlot.HEAD);
-        if(!stack.is(TrollItems.TROLLPODS.get())) {
-            level.playSound(player, blockPos, TrollSounds.TROLLFACE_ENTITY_DEATH.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+        if(state.is(this) && !stack.is(TrollItems.TROLLPODS.get())) {
+            level.playSound(null, blockPos, TrollSounds.TROLLFACE_ENTITY_DEATH.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
         }
-
     }
-
-
-
-
 }

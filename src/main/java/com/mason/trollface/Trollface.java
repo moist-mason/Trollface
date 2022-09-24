@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
 import org.slf4j.Logger;
 import software.bernie.geckolib3.GeckoLib;
 
@@ -29,15 +30,19 @@ public class Trollface {
     public Trollface() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        TrollItems.register(eventBus);
-        TrollBlocks.register(eventBus);
-
-        TrollSounds.register(eventBus);
-
-        TrollEntityTypes.register(eventBus);
-
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
+
+        DeferredRegister<?>[] registers = {
+            TrollBlocks.BLOCKS,
+            TrollItems.ITEMS,
+            TrollEntityTypes.ENTITY_TYPES,
+            TrollSounds.SOUND_EVENTS
+        };
+
+        for(DeferredRegister<?> pRegister : registers) {
+            pRegister.register(eventBus);
+        }
 
         GeckoLib.initialize();
 

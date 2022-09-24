@@ -12,7 +12,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum TrollArmorMaterials implements ArmorMaterial {
-    TROLLPODS("TrollPods", 2, new int[]{1, 2, 3, 1}, 0, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, 0.0F, () -> {
+    TROLLPODS("trollpods", 2, new int[]{1, 2, 3, 1}, 0, SoundEvents.ARMOR_EQUIP_GENERIC, 0.0F, 0.0F, () -> {
         return Ingredient.of(TrollItems.TROLLFACE.get());
     });
 
