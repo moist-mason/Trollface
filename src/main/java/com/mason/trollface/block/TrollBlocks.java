@@ -21,14 +21,14 @@ public class TrollBlocks {
 
     public static final RegistryObject<Block> TROLLFACE_BLOCK = registerBlock("trollface_block", () -> new BlockofTrollface(Block.Properties.of(Material.METAL).strength(70f).requiresCorrectToolForDrops()), TrollCreativeTab.TAB_TROLLFACE);
 
-    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
-        RegistryObject<T> registry = BLOCKS.register(name, block);
-        registerBlockItem(name, registry, tab);
+    private static <B extends Block> RegistryObject<B> registerBlock(String pName, Supplier<B> pBlock, CreativeModeTab pTab) {
+        RegistryObject<B> registry = BLOCKS.register(pName, pBlock);
+        registerBlockItem(pName, registry, pTab);
         return registry;
     }
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
-        return TrollItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+    private static <B extends Block> RegistryObject<Item> registerBlockItem(String pName, RegistryObject<B> pBlock, CreativeModeTab pTab) {
+        return TrollItems.ITEMS.register(pName, () -> new BlockItem(pBlock.get(), new Item.Properties().tab(pTab)));
     }
 
     public static void register(IEventBus eventBus) {

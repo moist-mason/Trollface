@@ -25,8 +25,7 @@ public class TrollItems {
     public static final RegistryObject<Item> TROLLPODS = registerItem("trollpods", () -> new ArmorItem(TrollArmorMaterials.TROLLPODS, EquipmentSlot.HEAD, new Item.Properties().tab(TrollCreativeTab.TAB_TROLLFACE)));
 
     private static <I extends Item> RegistryObject<I> registerItem(String pName, Supplier<I> pItem) {
-        RegistryObject<I> registry = ITEMS.register(pName, pItem);
-        return registry;
+        return ITEMS.register(pName, pItem);
     }
     public static void register(IEventBus pEventBus) {
         ITEMS.register(pEventBus);
