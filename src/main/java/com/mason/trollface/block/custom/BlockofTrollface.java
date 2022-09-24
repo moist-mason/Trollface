@@ -44,15 +44,14 @@ public class BlockofTrollface extends Block {
                     blockEffects(monster, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 200, 1, -1);
                 } else {
                     blockEffects(monster, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 400, 3, -2);
-
-                    /* Allows the player to wear trollpods and mute the block of trollface giggles, even if they
-                     * aren't the ones stepping on the block. */
-                    Player player = pLevel.getNearestPlayer(monster, 32);
-                    assert player != null;
-                    ItemStack stack1 = player.getItemBySlot(EquipmentSlot.HEAD);
-                    if (!stack1.is(TrollItems.TROLLPODS.get())) {
-                        pLevel.playSound(null, pPos, TrollSounds.TROLLFACE_ENTITY_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
-                    }
+                }
+                /* Allows the player to wear trollpods and mute the block of trollface giggles, even if they
+                 * aren't the ones stepping on the block. */
+                Player player = pLevel.getNearestPlayer(monster, 16);
+                assert player != null;
+                ItemStack stack1 = player.getItemBySlot(EquipmentSlot.HEAD);
+                if (!stack1.is(TrollItems.TROLLPODS.get())) {
+                    pLevel.playSound(null, pPos, TrollSounds.TROLLFACE_ENTITY_IDLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
             }
         }
@@ -65,11 +64,11 @@ public class BlockofTrollface extends Block {
 
     // The trollface death sound plays when the block is broken by a player. This can be negated by wearing trollpods.
     @SubscribeEvent
-    public void destroyBlock(BreakEvent pEvent) {
+    public void breakBlock(BreakEvent pEvent) {
         Player player = pEvent.getPlayer();
         BlockPos blockPos = pEvent.getPos();
-        Level level = player.getLevel();
         BlockState state = pEvent.getState();
+        Level level = player.getLevel();
         ItemStack stack = player.getItemBySlot(EquipmentSlot.HEAD);
         if(state.is(this) && !stack.is(TrollItems.TROLLPODS.get())) {
             level.playSound(null, blockPos, TrollSounds.TROLLFACE_ENTITY_DEATH.get(), SoundSource.BLOCKS, 1.0F, 1.0F);

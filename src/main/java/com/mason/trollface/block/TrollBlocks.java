@@ -22,9 +22,9 @@ public class TrollBlocks {
     public static final RegistryObject<Block> TROLLFACE_BLOCK = registerBlock("trollface_block", () -> new BlockofTrollface(Block.Properties.of(Material.METAL).strength(70f).requiresCorrectToolForDrops()), TrollCreativeTab.TAB_TROLLFACE);
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
-        RegistryObject<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn, tab);
-        return toReturn;
+        RegistryObject<T> registry = BLOCKS.register(name, block);
+        registerBlockItem(name, registry, tab);
+        return registry;
     }
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
