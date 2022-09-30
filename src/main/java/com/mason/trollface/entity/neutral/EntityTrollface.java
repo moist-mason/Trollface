@@ -105,8 +105,8 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     }
 
     @Override
-    public void setRemainingPersistentAngerTime(int angerTime) {
-        this.entityData.set(ANGER_TIME, angerTime);
+    public void setRemainingPersistentAngerTime(int pAngerTime) {
+        this.entityData.set(ANGER_TIME, pAngerTime);
     }
 
     @Nullable
@@ -116,8 +116,8 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     }
 
     @Override
-    public void setPersistentAngerTarget(@Nullable UUID angerTarget) {
-        this.target = angerTarget;
+    public void setPersistentAngerTarget(@Nullable UUID pAngerTarget) {
+        this.target = pAngerTarget;
     }
 
     @Override
@@ -126,20 +126,20 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     }
 
     // Useless animation method.
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.trollface.nil", true));
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> pEvent) {
+        if (pEvent.isMoving()) {
+            pEvent.getController().setAnimation(new AnimationBuilder().addAnimation("animation.trollface.nil", true));
             return PlayState.CONTINUE;
         }
 
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.trollface.nil", true));
+        pEvent.getController().setAnimation(new AnimationBuilder().addAnimation("animation.trollface.nil", true));
         return PlayState.CONTINUE;
     }
 
     // Useless animation method.
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
+    public void registerControllers(AnimationData pData) {
+        pData.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
     }
 
     // Useless animation method.
@@ -153,7 +153,7 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
         return TrollSounds.TROLLFACE_ENTITY_IDLE.get();
     }
 
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    protected SoundEvent getHurtSound(DamageSource pSource) {
         return TrollSounds.TROLLFACE_ENTITY_HURT.get();
     }
 

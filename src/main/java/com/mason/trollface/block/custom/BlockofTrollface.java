@@ -28,6 +28,7 @@ public class BlockofTrollface extends Block {
         super(pProperties);
     }
 
+    // Main function when a player steps on a Block of Trollface. Contains the sound-playing functionality and trollpod functionality.
     @Override
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
         if (!pLevel.isClientSide()) {
@@ -46,8 +47,8 @@ public class BlockofTrollface extends Block {
                 } else {
                     blockEffects(monster, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.JUMP, 400, 3, -2);
                 }
-                /* Allows the player to wear trollpods and mute the block of trollface giggles, even if they
-                 * aren't the ones stepping on the block. */
+                /* This chunk of code allows the player to wear trollpods and mute the block of trollface giggles, even if
+                 * they aren't the ones stepping on the block. */
                 Player player = pLevel.getNearestPlayer(monster, 16);
                 assert player != null;
                 if (!nearestPlayerWearingTrollPods(player)) {
@@ -65,11 +66,14 @@ public class BlockofTrollface extends Block {
         }
     }
 
+    /* This method dictates the effects given when an entity steps on the block of trollface. To me, this looks
+     * cleaner than writing out the addEffect() method out manually every time. */
     public void blockEffects(LivingEntity pEntity, MobEffect pEffect1, MobEffect pEffect2, int pDuration, int pAmplifier1, int pAmplifier2) {
         pEntity.addEffect(new MobEffectInstance(pEffect1, pDuration, pAmplifier1));
         pEntity.addEffect(new MobEffectInstance(pEffect2, pDuration, pAmplifier2));
     }
 
+    // Checks if the player is wearing trollpods (only used when non-players step on the block of trollface).
     public boolean nearestPlayerWearingTrollPods(Player pPlayer) {
         ItemStack stack = pPlayer.getItemBySlot(EquipmentSlot.HEAD);
         return stack.is(TrollItems.TROLLPODS.get());

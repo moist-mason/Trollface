@@ -12,15 +12,15 @@ public class TrollSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, Trollface.MOD_ID);
 
     // Trollface entity sounds
-    public static final RegistryObject<SoundEvent> TROLLFACE_ENTITY_IDLE = regSoundEvent("trollface_entity_idle");
-    public static final RegistryObject<SoundEvent> TROLLFACE_ENTITY_HURT = regSoundEvent("trollface_entity_hurt");
-    public static final RegistryObject<SoundEvent> TROLLFACE_ENTITY_DEATH = regSoundEvent("trollface_entity_death");
+    public static final RegistryObject<SoundEvent> TROLLFACE_ENTITY_IDLE = registerSoundEvent("trollface_entity_idle");
+    public static final RegistryObject<SoundEvent> TROLLFACE_ENTITY_HURT = registerSoundEvent("trollface_entity_hurt");
+    public static final RegistryObject<SoundEvent> TROLLFACE_ENTITY_DEATH = registerSoundEvent("trollface_entity_death");
 
-    private static RegistryObject<SoundEvent> regSoundEvent(String name) {
-        return SOUND_EVENTS.register(name, () -> new SoundEvent(new ResourceLocation(Trollface.MOD_ID, name)));
+    private static RegistryObject<SoundEvent> registerSoundEvent(String pName) {
+        return SOUND_EVENTS.register(pName, () -> new SoundEvent(new ResourceLocation(Trollface.MOD_ID, pName)));
     }
 
-    public static void register(IEventBus eventBus) {
-        SOUND_EVENTS.register(eventBus);
+    public static void register(IEventBus pEventBus) {
+        SOUND_EVENTS.register(pEventBus);
     }
 }

@@ -12,18 +12,18 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
 public class EntityTrollfaceRenderer extends GeoEntityRenderer<EntityTrollface> {
-    public EntityTrollfaceRenderer(EntityRendererProvider.Context renderManager) {
-        super(renderManager, new EntityTrollfaceModel());
+    public EntityTrollfaceRenderer(EntityRendererProvider.Context pRenderManager) {
+        super(pRenderManager, new EntityTrollfaceModel());
         this.shadowRadius = 0.5f;
     }
 
     @Override
-    public ResourceLocation getTextureLocation(EntityTrollface instance) {
+    public ResourceLocation getTextureLocation(EntityTrollface pInstance) {
         return new ResourceLocation(Trollface.MOD_ID, "textures/entity/trollface_entity.png");
     }
 
-    public RenderType getRenderType(EntityTrollface animatable, float partialTicks, PoseStack stack, MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
-        stack.scale(1F, 1F, 1F);
-        return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
+    public RenderType getRenderType(EntityTrollface pAnimatable, float pPartialTicks, PoseStack pStack, MultiBufferSource pRenderTypeBuffer, VertexConsumer pVertexBuilder, int pPackedLightIn, ResourceLocation pTextureLocation) {
+        pStack.scale(1F, 1F, 1F);
+        return super.getRenderType(pAnimatable, pPartialTicks, pStack, pRenderTypeBuffer, pVertexBuilder, pPackedLightIn, pTextureLocation);
     }
 }

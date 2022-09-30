@@ -15,7 +15,7 @@ public class TrollEntityTypes {
 
     public static final RegistryObject<EntityType<EntityTrollface>> TROLLFACE_ENTITY = ENTITY_TYPES.register("trollface_entity", () -> EntityType.Builder.of(EntityTrollface::new, MobCategory.CREATURE).sized(1.5f, 1.2f).build(new ResourceLocation(Trollface.MOD_ID, "trollface_entity").toString()));
 
-    public static void register(IEventBus eventBus) {
-        ENTITY_TYPES.register(eventBus);
+    public static void register(IEventBus pEventBus) {
+        ENTITY_TYPES.register(pEventBus);
     }
 }
