@@ -210,3 +210,10 @@ publishing {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
+
+task generateZip(type: JavaExec) {
+    group = "zipgen"
+    description = "Generates the zip file uploaded to Github."
+    classpath = sourceSets.main.runtimeClasspath
+    main = "com/mason/zipgen/Main"
+}
