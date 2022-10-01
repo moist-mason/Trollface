@@ -31,7 +31,7 @@ public class TrollBlocks {
         return TrollItems.ITEMS.register(pName, () -> new BlockItem(pBlock.get(), new Item.Properties().tab(pTab)));
     }
 
-    public static void register(IEventBus eventBus) {
-        BLOCKS.register(eventBus);
+    public static void register(IEventBus pEventBus) {
+        BLOCKS.register(pEventBus);
     }
 }

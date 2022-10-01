@@ -1,4 +1,4 @@
-package com.mason.trollface.world.gen;
+package com.mason.trollface.world.gen.entity;
 
 import com.mason.trollface.entity.TrollEntityTypes;
 import net.minecraft.resources.ResourceKey;

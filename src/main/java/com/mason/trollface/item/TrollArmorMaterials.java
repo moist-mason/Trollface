@@ -1,7 +1,6 @@
-package com.mason.trollface.item.custom;
+package com.mason.trollface.item;
 
 import com.mason.trollface.Trollface;
-import com.mason.trollface.item.TrollItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
@@ -26,7 +25,7 @@ public enum TrollArmorMaterials implements ArmorMaterial {
     private final float knockbackResistance;
     private final LazyLoadedValue<Ingredient> repairIngredient;
 
-    private TrollArmorMaterials(String pName, int pDurabilityMultiplier, int[] pSlotProtections, int pEnchantmentValue, SoundEvent pSound, float pToughness, float pKnockbackResistance, Supplier<Ingredient> pRepairIngredient) {
+    TrollArmorMaterials(String pName, int pDurabilityMultiplier, int[] pSlotProtections, int pEnchantmentValue, SoundEvent pSound, float pToughness, float pKnockbackResistance, Supplier<Ingredient> pRepairIngredient) {
         this.name = pName;
         this.durabilityMultiplier = pDurabilityMultiplier;
         this.slotProtections = pSlotProtections;

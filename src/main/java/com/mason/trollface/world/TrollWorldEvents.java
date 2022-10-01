@@ -1,7 +1,7 @@
 package com.mason.trollface.world;
 
 import com.mason.trollface.Trollface;
-import com.mason.trollface.world.gen.TrollEntityGeneration;
+import com.mason.trollface.world.gen.entity.TrollEntityGeneration;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

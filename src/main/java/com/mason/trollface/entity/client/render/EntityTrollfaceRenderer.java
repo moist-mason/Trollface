@@ -2,7 +2,7 @@ package com.mason.trollface.entity.client.render;
 
 import com.mason.trollface.Trollface;
 import com.mason.trollface.entity.client.model.EntityTrollfaceModel;
-import com.mason.trollface.entity.neutral.EntityTrollface;
+import com.mason.trollface.entity.mob.neutral.EntityTrollface;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

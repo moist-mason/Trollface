@@ -3,7 +3,7 @@ package com.mason.trollface;
 import com.mason.trollface.block.TrollBlocks;
 import com.mason.trollface.entity.TrollEntityTypes;
 import com.mason.trollface.entity.client.render.EntityTrollfaceRenderer;
-import com.mason.trollface.entity.neutral.EntityTrollface;
+import com.mason.trollface.entity.mob.neutral.EntityTrollface;
 import com.mason.trollface.item.TrollItems;
 import com.mason.trollface.sound.TrollSounds;
 import com.mojang.logging.LogUtils;
@@ -23,9 +23,9 @@ import software.bernie.geckolib3.GeckoLib;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Trollface.MOD_ID)
 public class Trollface {
+    public static final String MOD_ID = "trollface";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
-    public static final String MOD_ID = "trollface";
 
     public Trollface() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -34,13 +34,13 @@ public class Trollface {
         eventBus.addListener(this::clientSetup);
 
         DeferredRegister<?>[] registers = {
-            TrollBlocks.BLOCKS,
-            TrollItems.ITEMS,
-            TrollEntityTypes.ENTITY_TYPES,
-            TrollSounds.SOUND_EVENTS
+                TrollBlocks.BLOCKS,
+                TrollItems.ITEMS,
+                TrollEntityTypes.ENTITY_TYPES,
+                TrollSounds.SOUND_EVENTS
         };
 
-        for(DeferredRegister<?> pRegister : registers) {
+        for (DeferredRegister<?> pRegister : registers) {
             pRegister.register(eventBus);
         }
 

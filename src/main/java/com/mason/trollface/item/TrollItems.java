@@ -3,7 +3,6 @@ package com.mason.trollface.item;
 import com.mason.trollface.Trollface;
 import com.mason.trollface.entity.TrollEntityTypes;
 import com.mason.trollface.item.custom.TotemofTrolling;
-import com.mason.trollface.item.custom.TrollArmorMaterials;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
@@ -27,6 +26,7 @@ public class TrollItems {
     private static <I extends Item> RegistryObject<I> registerItem(String pName, Supplier<I> pItem) {
         return ITEMS.register(pName, pItem);
     }
+
     public static void register(IEventBus pEventBus) {
         ITEMS.register(pEventBus);
     }

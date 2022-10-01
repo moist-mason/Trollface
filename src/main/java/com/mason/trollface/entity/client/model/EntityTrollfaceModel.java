@@ -1,7 +1,7 @@
 package com.mason.trollface.entity.client.model;
 
 import com.mason.trollface.Trollface;
-import com.mason.trollface.entity.neutral.EntityTrollface;
+import com.mason.trollface.entity.mob.neutral.EntityTrollface;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
@@ -18,7 +18,7 @@ public class EntityTrollfaceModel extends AnimatedGeoModel<EntityTrollface> {
 
     // Trollface doesn't have animations, but this method must be implemented.
     @Override
-    public ResourceLocation getAnimationFileLocation(EntityTrollface pAnimateable) {
+    public ResourceLocation getAnimationFileLocation(EntityTrollface pAnimatable) {
         return new ResourceLocation(Trollface.MOD_ID, "animations/trollface.animation.json");
     }
 }

@@ -1,7 +1,7 @@
 package com.mason.trollface.entity;
 
 import com.mason.trollface.Trollface;
-import com.mason.trollface.entity.neutral.EntityTrollface;
+import com.mason.trollface.entity.mob.neutral.EntityTrollface;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
