@@ -29,14 +29,12 @@ displayURL="https://github.com/moist-mason/Trollface" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="trollface.png" #optional
 # A text field displayed in the mod UI
-credits="Credits can be found with the ZIP file" #optional
+credits="Credits can be found with the ZIP file." #optional
 # A text field displayed in the mod UI
 authors="moist-mason" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Introducing the silliest mod in all of Minecraft.
-The Trollface Mod allows you to interact with real trollfaces in the Minecraft wilderness, among other fantastic features.
-'''
+Introducing the silliest mod in all of Minecraft. The Trollface Mod allows you to interact with real trollfaces in the Minecraft wilderness, among other fantastic features.'''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.trollface]] #optional
     # the modid of the dependency
