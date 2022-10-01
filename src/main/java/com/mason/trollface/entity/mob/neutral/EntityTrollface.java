@@ -1,4 +1,4 @@
-package com.mason.trollface.entity.neutral;
+package com.mason.trollface.entity.mob.neutral;
 
 import com.mason.trollface.sound.TrollSounds;
 import net.minecraft.core.BlockPos;
@@ -7,11 +7,14 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -20,7 +23,10 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -34,16 +40,14 @@ import java.util.Random;
 import java.util.UUID;
 
 
-// Trollface has no animations, but it uses an animated geo model via the GeckoLib library.
-// Any called classes or methods related to animation are required for things to work, but are either left blank or call an animation that doesn't do anything (animation.trollface.nil).
-// I will attempt to change this in the future. -Mason
+/* Trollface has no animations, but it uses an animated geo model via the GeckoLib library.
+ * Any called classes or methods related to animation are required for things to work, but are either left blank or call an animation that doesn't do anything (animation.trollface.nil).
+ * I will attempt to change this in the future. -Mason */
 public class EntityTrollface extends Monster implements NeutralMob, IAnimatable {
-    private AnimationFactory factory = new AnimationFactory(this);
-
     // Two variables related to how long it takes until the Trollface mob calms down after attack mode.
     private static final EntityDataAccessor<Integer> ANGER_TIME = SynchedEntityData.defineId(EntityTrollface.class, EntityDataSerializers.INT);
     private static final UniformInt ANGRY_TIMER = TimeUtil.rangeOfSeconds(30, 40);
-
+    private final AnimationFactory factory = new AnimationFactory(this);
     // Variable dictating the target of the Trollface mob's wrath.
     private UUID target;
 
@@ -51,9 +55,21 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
         super(pEntityType, pLevel);
     }
 
-    // health, speed, and attack damage attributes.
+    // Health, speed, and attack damage attributes.
     public static AttributeSupplier setAttributes() {
         return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20.00).add(Attributes.ATTACK_DAMAGE, 5.0f).add(Attributes.ATTACK_SPEED, 2.0f).add(Attributes.MOVEMENT_SPEED, 0.3f).build();
+    }
+
+    /* Custom spawn rules for the Trollface mob. The mob spawns in easy difficulty and above,
+     * it spawns on any block that an animal can spawn, and it spawns in any light level above 8. */
+    public static boolean checkTrollfaceEntitySpawnRules(EntityType<EntityTrollface> pType, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, Random pRandom) {
+        return pLevel.getDifficulty() != Difficulty.PEACEFUL && pLevel.getBlockState(pPos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && isBrightEnoughToSpawn(pLevel, pPos);
+    }
+
+    /* Sets the light level that Trollface can spawn in, in this case at a level of 9 or above.
+     * A similar method can be found in the vanilla Animal class. */
+    protected static boolean isBrightEnoughToSpawn(BlockAndTintGetter pLevel, BlockPos pPos) {
+        return pLevel.getRawBrightness(pPos, 0) > 8;
     }
 
     @Override
@@ -62,8 +78,8 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
         this.entityData.define(ANGER_TIME, 0);
     }
 
-    // Trollface is a neutral mob. It generally likes to move around in random directions, but when it gets hit by another mob,
-    // it will target that mob and attack it.
+    /* Trollface is a neutral mob. It generally likes to move around in random directions, but when it gets hit by another mob,
+     * it will target that mob and attack it. */
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
@@ -75,17 +91,6 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false));
-    }
-
-    // Custom spawn rules for the Trollface mob.
-    // The mob spawns in easy difficulty and above, it spawns on any block that an animal can spawn, and it spawns in any light level above 8.
-    public static boolean checkTrollfaceEntitySpawnRules(EntityType<EntityTrollface> pType, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, Random pRandom) {
-        return pLevel.getDifficulty() != Difficulty.PEACEFUL && pLevel.getBlockState(pPos.below()).is(BlockTags.ANIMALS_SPAWNABLE_ON) && isBrightEnoughToSpawn(pLevel, pPos);
-    }
-
-    // Sets the light level that Trollface can spawn in, in this case at a level of 9 or above. A similar method can be found in the vanilla Animal class.
-    protected static boolean isBrightEnoughToSpawn(BlockAndTintGetter pLevel, BlockPos pPos) {
-        return pLevel.getRawBrightness(pPos, 0) > 8;
     }
 
     // Override of a method found in the vanilla Monster class. This override allows for the Trollface mob to spawn in daylight.
@@ -105,8 +110,8 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     }
 
     @Override
-    public void setRemainingPersistentAngerTime(int angerTime) {
-        this.entityData.set(ANGER_TIME, angerTime);
+    public void setRemainingPersistentAngerTime(int pAngerTime) {
+        this.entityData.set(ANGER_TIME, pAngerTime);
     }
 
     @Nullable
@@ -116,8 +121,8 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     }
 
     @Override
-    public void setPersistentAngerTarget(@Nullable UUID angerTarget) {
-        this.target = angerTarget;
+    public void setPersistentAngerTarget(@Nullable UUID pAngerTarget) {
+        this.target = pAngerTarget;
     }
 
     @Override
@@ -125,24 +130,22 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
         this.setRemainingPersistentAngerTime(ANGRY_TIMER.sample(this.random));
     }
 
-    // Useless animation method.
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (event.isMoving()) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.trollface.nil", true));
+    // Useless animation methods.
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> pEvent) {
+        if (pEvent.isMoving()) {
+            pEvent.getController().setAnimation(new AnimationBuilder().addAnimation("animation.trollface.nil", true));
             return PlayState.CONTINUE;
         }
 
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.trollface.nil", true));
+        pEvent.getController().setAnimation(new AnimationBuilder().addAnimation("animation.trollface.nil", true));
         return PlayState.CONTINUE;
     }
 
-    // Useless animation method.
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
+    public void registerControllers(AnimationData pData) {
+        pData.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
     }
 
-    // Useless animation method.
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
@@ -153,7 +156,7 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
         return TrollSounds.TROLLFACE_ENTITY_IDLE.get();
     }
 
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    protected SoundEvent getHurtSound(DamageSource pSource) {
         return TrollSounds.TROLLFACE_ENTITY_HURT.get();
     }
 

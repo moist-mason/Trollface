@@ -1,17 +1,20 @@
+Anything not credited within this file was created by the original mod author. These items are under the public domain.
+
 LOGO
 Trollge meme
 
 SOUND
-trollface_entity_death - Replix on freesound.org
-trollface_entity_hurt_1 - Reitanna Seishin on freesound.org
-trollface_entity_idle_1 - Reitanna Seishin on freesound.org
-trollface_entity_idle_2 - Futurama, John DiMaggio
+trollface_entity_death: Replix on freesound.org
+trollface_entity_hurt_1: Reitanna Seishin on freesound.org
+trollface_entity_idle_1: Reitanna Seishin on freesound.org
+trollface_entity_idle_2: Futurama, John DiMaggio
 
 TEXTURES
-Trollface Concept and Original Design: Originally by Carlos "Whynne" Ramirez; © Carlos Ramirez 2010-present. All rights reserved.
+Trollface Concept and Original Design: Originally by Carlos "Whynne" Ramirez; © Carlos Ramirez ~2010-present. All rights reserved.
 Trollface item texture: Original creator unknown; texture taken from http://pixelartmaker.com/art/e37846b03482c51. Posted ~2017
 Trollface block texture: Original creator unknown; texture based on the texture of Popbob, the infamous griefer/hacker of 2b2t, the oldest anarchy server in Minecraft.
 Trollface entity texture: Original creator unknown;  texture taken from https://www.pixilart.com/draw/troll-face-base-724c60286230f0c
+Totem of Trolling texture: Created with Popbob skin using https://r2beeaton.com/t/ (really cool site)
 
 
 
