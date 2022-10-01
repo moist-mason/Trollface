@@ -23,6 +23,8 @@ public class TotemofTrolling extends Item {
         super(pProperties);
     }
 
+    /* The method that uses the Totem of Trolling upon a player's or entity's death. Using a Forge event, this is an adaptation of
+     * the vanilla totem code that can be found within the LivingEntity class */
     @SubscribeEvent
     public static boolean useTotem(LivingDeathEvent pEvent) {
         LivingEntity entity = pEvent.getEntityLiving();
