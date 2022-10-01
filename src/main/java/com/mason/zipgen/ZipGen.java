@@ -1,7 +1,7 @@
 /**
  * This mini-program generates the zip file that I upload to the Trollface GitHub page.
  * It is not intended for public use. I just made it because assembling the zip file
- * manually is mildly inconvenient. The file is executed via a gradle task.
+ * manually is mildly inconvenient. The program is executed in IntelliJ via a gradle task.
  */
 
 package com.mason.zipgen;
@@ -10,9 +10,9 @@ import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class Main {
+public class ZipGen {
     public static void main(String[] args) throws IOException {
-        String currentVersion = "trollface-0.2.0-1.18.2";
+        String currentVersion = "trollface-0.2.0-alpha-1.18.2";
         String projectDir = "D:/Programs/Projects/Trollface/";
 
         String fileJar = projectDir + "build/libs/" + currentVersion + ".jar";
@@ -40,6 +40,7 @@ public class Main {
             input.close();
             output.closeEntry();
         }
+        
         output.close();
     }
 }

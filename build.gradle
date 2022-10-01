@@ -19,7 +19,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 
-version = '0.2.0-1.18.2'
+version = '0.2.0-alpha-1.18.2'
 group = 'com.mason.trollface' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'trollface'
 
@@ -213,7 +213,7 @@ tasks.withType(JavaCompile).configureEach {
 
 task generateZip(type: JavaExec) {
     group = "zipgen"
-    description = "Generates the zip file uploaded to Github."
+    description = "Generates the zip file uploaded to GitHub."
     classpath = sourceSets.main.runtimeClasspath
-    main = "com/mason/zipgen/Main"
+    main = "com/mason/zipgen/ZipGen"
 }
