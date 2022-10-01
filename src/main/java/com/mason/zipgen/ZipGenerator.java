@@ -6,11 +6,14 @@
 
 package com.mason.zipgen;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ZipGen {
+public class ZipGenerator {
     public static void main(String[] args) throws IOException {
         String currentVersion = "trollface-0.2.0-alpha-1.18.2";
         String projectDir = "D:/Programs/Projects/Trollface/";
@@ -40,7 +43,7 @@ public class ZipGen {
             input.close();
             output.closeEntry();
         }
-        
+
         output.close();
     }
 }

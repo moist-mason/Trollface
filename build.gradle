@@ -215,5 +215,5 @@ task generateZip(type: JavaExec) {
     group = "zipgen"
     description = "Generates the zip file uploaded to GitHub."
     classpath = sourceSets.main.runtimeClasspath
-    main = "com/mason/zipgen/ZipGen"
+    main = "com/mason/zipgen/ZipGenerator"
 }
