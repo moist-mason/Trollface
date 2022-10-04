@@ -1,20 +1,24 @@
 package com.mason.trollface.entity.client.render;
 
 import com.mason.trollface.Trollface;
-import com.mason.trollface.entity.client.model.EntityTrollfaceModel;
+import com.mason.trollface.entity.client.model.TrollMobModel;
+import com.mason.trollface.entity.client.model.TrollModelLayers;
 import com.mason.trollface.entity.mob.neutral.EntityTrollface;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
-public class EntityTrollfaceRenderer extends GeoEntityRenderer<EntityTrollface> {
-    public EntityTrollfaceRenderer(EntityRendererProvider.Context pRenderManager) {
-        super(pRenderManager, new EntityTrollfaceModel());
-        this.shadowRadius = 0.5f;
+import javax.annotation.Nonnull;
+
+public class EntityTrollfaceRenderer extends MobRenderer<EntityTrollface, TrollMobModel<EntityTrollface>> {
+    public EntityTrollfaceRenderer(EntityRendererProvider.Context pContext) {
+        super(pContext, new TrollMobModel<>(pContext.bakeLayer(TrollModelLayers.TROLLFACE_ENTITY)), 0.5F);
+    }
+
+    @Override
+    protected void scale(@Nonnull EntityTrollface pTrollface, PoseStack pStack, float pPartialTicks) {
+        pStack.scale(1.0F, 1.0F, 1.0F);
     }
 
     @Override
@@ -22,8 +26,4 @@ public class EntityTrollfaceRenderer extends GeoEntityRenderer<EntityTrollface> 
         return new ResourceLocation(Trollface.MOD_ID, "textures/entity/trollface_entity.png");
     }
 
-    public RenderType getRenderType(EntityTrollface pAnimatable, float pPartialTicks, PoseStack pStack, MultiBufferSource pRenderTypeBuffer, VertexConsumer pVertexBuilder, int pPackedLightIn, ResourceLocation pTextureLocation) {
-        pStack.scale(1F, 1F, 1F);
-        return super.getRenderType(pAnimatable, pPartialTicks, pStack, pRenderTypeBuffer, pVertexBuilder, pPackedLightIn, pTextureLocation);
-    }
 }

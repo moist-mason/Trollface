@@ -28,26 +28,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.Random;
 import java.util.UUID;
 
-
-/* Trollface has no animations, but it uses an animated geo model via the GeckoLib library.
- * Any called classes or methods related to animation are required for things to work, but are either left blank or call an animation that doesn't do anything (animation.trollface.nil).
- * I will attempt to change this in the future. -Mason */
-public class EntityTrollface extends Monster implements NeutralMob, IAnimatable {
+public class EntityTrollface extends Monster implements NeutralMob {
     // Two variables related to how long it takes until the Trollface mob calms down after attack mode.
     private static final EntityDataAccessor<Integer> ANGER_TIME = SynchedEntityData.defineId(EntityTrollface.class, EntityDataSerializers.INT);
     private static final UniformInt ANGRY_TIMER = TimeUtil.rangeOfSeconds(30, 40);
-    private final AnimationFactory factory = new AnimationFactory(this);
     // Variable dictating the target of the Trollface mob's wrath.
     private UUID target;
 
@@ -128,27 +116,6 @@ public class EntityTrollface extends Monster implements NeutralMob, IAnimatable 
     @Override
     public void startPersistentAngerTimer() {
         this.setRemainingPersistentAngerTime(ANGRY_TIMER.sample(this.random));
-    }
-
-    // Useless animation methods.
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> pEvent) {
-        if (pEvent.isMoving()) {
-            pEvent.getController().setAnimation(new AnimationBuilder().addAnimation("animation.trollface.nil", true));
-            return PlayState.CONTINUE;
-        }
-
-        pEvent.getController().setAnimation(new AnimationBuilder().addAnimation("animation.trollface.nil", true));
-        return PlayState.CONTINUE;
-    }
-
-    @Override
-    public void registerControllers(AnimationData pData) {
-        pData.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return this.factory;
     }
 
     // Sound methods.
