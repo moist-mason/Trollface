@@ -1,0 +1,32 @@
+{
+  "parent": "trollface:kill_trollface_entity",
+  "display": {
+    "icon": {
+      "item": "trollface:totem_of_trolling"
+    },
+    "title": "Fatal Trolling",
+    "description": "Attempt and fail to use the totem of trolling.",
+    "frame": "task",
+    "hidden": true,
+    "show_toast": true,
+    "annouce_to_chat": true,
+    "background": "trollface:textures/block/trollface_block.png"
+  },
+  "criteria": {
+    "use_totem_of_trolling": {
+      "trigger": "minecraft:used_totem",
+      "conditions": {
+        "item": {
+          "items": [
+            "trollface:totem_of_trolling"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "use_totem_of_trolling"
+    ]
+  ]
+}

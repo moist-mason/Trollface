@@ -1,8 +1,11 @@
 package com.mason.trollface.item.custom;
 
 import com.mason.trollface.item.TrollItems;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -44,6 +47,10 @@ public class TotemofTrolling extends Item {
             }
 
             if (stack != null) {
+                if (entity instanceof ServerPlayer player) {
+                    player.awardStat(Stats.ITEM_USED.get(TrollItems.TOTEM_OF_TROLLING.get()));
+                    CriteriaTriggers.USED_TOTEM.trigger(player, stack);
+                }
                 entity.removeAllEffects();
             }
 
